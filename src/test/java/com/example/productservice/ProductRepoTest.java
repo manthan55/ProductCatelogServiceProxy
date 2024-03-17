@@ -36,7 +36,7 @@ public class ProductRepoTest {
 //    public ProductRepoTest(ProductRepository productRepository, CategoryRepository categoryRepository) {
 //        this.productRepository = productRepository;
 //        this.categoryRepository = categoryRepository;
-//    }
+    }
 
     @Test
     void AddProductTest(){

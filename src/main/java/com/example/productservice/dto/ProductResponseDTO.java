@@ -29,8 +29,8 @@ public class ProductResponseDTO {
         dto.setPrice(product.getPrice());
         dto.setDescription(product.getDescription());
         dto.setImage(product.getImage());
-        dto.setCategory(new CategoryResponseDTO(product.getCategory()));
 
+        if(product.getCategory() != null) dto.setCategory(new CategoryResponseDTO(product.getCategory()));
         if(product.getRating() != null) dto.setRating(new RatingResponseDTO(product.getRating()));
 
         return dto;
