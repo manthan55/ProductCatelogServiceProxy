@@ -23,8 +23,11 @@ public class SearchService {
         return productRepository.findAllByTitleLike("%"+query+"%");
     }
 
+//    public List<Product> searchProducts(String query, int pageNo, int pageSize){
+//        return productRepository.findByTitleEquals(query, PageRequest.of(pageNo, pageSize));
+//    }
+
     public Page<Product> searchProducts(String query, int pageNo, int pageSize){
-//        return productRepository.findAllByTitleLike(query);
         return productRepository.findByTitleEquals(query, PageRequest.of(pageNo, pageSize));
     }
 }

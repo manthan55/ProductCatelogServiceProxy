@@ -47,4 +47,46 @@ public class SearchController {
                 .status(httpStatus)
                 .body(response);
     }
+
+//    @PostMapping("/pageable")
+//    public ResponseEntity<APIResponse> searchProductsPageable(@RequestBody SearchRequestDTO requestDTO){
+//        APIResponse response = null;
+//        HttpStatus httpStatus = HttpStatus.OK;
+//
+//        try{
+//            List<Product> products = searchService.searchProducts(requestDTO.getQuery(), requestDTO.getPageNo(), requestDTO.getPageSize());
+//            response = new APIResponseSuccess<List<ProductResponseDTO>>(ProductResponseDTO.fromProductList(products));
+//            httpStatus = HttpStatus.OK;
+//        }
+//        catch(Exception ex){
+//            System.out.println(ex.getMessage());
+//            response = null;
+//            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+//        }
+//
+//        return ResponseEntity
+//                .status(httpStatus)
+//                .body(response);
+//    }
+
+    @PostMapping("/pageable/page")
+    public ResponseEntity<Page<Product>> searchProductsPageablePage(@RequestBody SearchRequestDTO requestDTO){
+        Page<Product> response = null;
+        HttpStatus httpStatus = HttpStatus.OK;
+
+        try{
+            Page<Product> products = searchService.searchProducts(requestDTO.getQuery(), requestDTO.getPageNo(), requestDTO.getPageSize());
+            response = products;
+            httpStatus = HttpStatus.OK;
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            response = null;
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return ResponseEntity
+                .status(httpStatus)
+                .body(response);
+    }
 }

@@ -17,6 +17,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByTitleLike(String title);
 
 //    List<Product> findByTitleEquals(String title, Pageable pageable);
-
-    Page<Product> findByTitleEquals(String title, PageRequest pageRequest);
+    Page<Product> findByTitleEquals(String title, Pageable pageable);
 }
