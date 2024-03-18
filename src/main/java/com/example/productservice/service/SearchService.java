@@ -17,9 +17,10 @@ public class SearchService {
     }
 
     public List<Product> searchProducts(String query){
-        return productRepository.findByTitleEquals(query);
-//        return productRepository.findAllByTitleLike(query);
-//        return productRepository.findByTitleEquals(query, PageRequest.of(pageNo, pageSize));
+//        return productRepository.findByTitleEquals(query);
+
+        // https://www.baeldung.com/spring-jpa-like-queries
+        return productRepository.findAllByTitleLike("%"+query+"%");
     }
 
     public Page<Product> searchProducts(String query, int pageNo, int pageSize){
