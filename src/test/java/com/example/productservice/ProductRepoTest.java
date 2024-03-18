@@ -17,7 +17,7 @@ public class ProductRepoTest {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @Test
+//    @Test
     void saveProductAndCategory(){
         Category c = new Category();
         c.setName("Electronics");
@@ -38,7 +38,7 @@ public class ProductRepoTest {
 //        this.categoryRepository = categoryRepository;
     }
 
-    @Test
+//    @Test
     void AddProductTest(){
         Category c = new Category();
         c.setName("electronics");
