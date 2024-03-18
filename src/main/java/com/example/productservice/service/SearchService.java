@@ -4,6 +4,7 @@ import com.example.productservice.models.Product;
 import com.example.productservice.repositories.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class SearchService {
 //    }
 
     public Page<Product> searchProducts(String query, int pageNo, int pageSize){
-        return productRepository.findByTitleEquals(query, PageRequest.of(pageNo, pageSize));
+        Sort sort = Sort.by("id").descending();
+        return productRepository.findByTitleEquals(query, PageRequest.of(pageNo, pageSize, sort));
     }
 }
