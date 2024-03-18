@@ -21,7 +21,7 @@ spring:
         #https://stackoverflow.com/a/38690930/6818945
         enable_lazy_load_no_trans: "true"
   datasource:
-    url: "jdbc:mysql://localhost:3306/products"
+    url: "jdbc:mysql://localhost:3306/products?createDatabaseIfNotExist=true"
     username: "root"
     password: "root"
     driver-class-name: "com.mysql.cj.jdbc.Driver"
