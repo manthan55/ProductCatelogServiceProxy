@@ -6,11 +6,13 @@ import com.example.productservice.dto.EditProductRequestDTO;
 import com.example.productservice.fakestoreapi.models.FSProduct;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Data()
+@ToString(callSuper=true, includeFieldNames=true)
 // to provide custom table name
 //@Entity(name = "prds")
 @Entity

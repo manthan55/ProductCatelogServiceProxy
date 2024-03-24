@@ -1,0 +1,53 @@
+#server:
+#  port: "9000"
+
+spring:
+  profiles:
+    # https://codesarray.com/view/Multiple-application-properties-file-in-spring-boot
+    active: "dev"
+    default: "dev"
+  jpa:
+    hibernate:
+      # update will only kick-in if any columns are added or removed
+      # it won't work if we change the generation type of an Id column
+      # so it doesn't update db in case we make changes to annotations/attributes (addition/removal/updates)
+      ddl-auto: "update"
+      # create does not remove deleted columns & columns which we have renamed
+#      ddl-auto: "create"
+    show-sql: "true"
+    properties:
+      hibernate:
+        # this is needed to enable lazy loading
+        #https://stackoverflow.com/a/38690930/6818945
+        enable_lazy_load_no_trans: "true"
+  datasource:
+    url: "jdbc:mysql://localhost:3306/products?createDatabaseIfNotExist=true"
+    username: "root"
+    password: "root"
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: "trace"
+
+#Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,env,beans"
+  info:
+    env:
+      enabled: "true"
+
+#Actuator
+# /actuator/info
+info:
+  application:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    anything: "absolutely anything"

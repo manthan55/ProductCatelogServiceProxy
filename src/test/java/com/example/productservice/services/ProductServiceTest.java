@@ -21,27 +21,15 @@ public class ProductServiceTest {
         Product p1 = new Product();
         p1.setTitle("laptop");
 
-        Product p2 = new Product();
-        p2.setTitle("laptop");
-
-        Product p3 = new Product();
-        p3.setTitle("laptop");
-
-        Product p4 = new Product();
-        p4.setTitle("laptop");
-
-        Product p5 = new Product();
-        p5.setTitle("laptop");
-
-        Product p6 = new Product();
-        p6.setTitle("laptop");
-
         // Act
+        for(int i = 0; i < 10; i++){
+            productRepository.save(p1);
+            p1.setId(p1.getId()+1);
+        }
+
+        p1.setId(p1.getId()+1);
+        p1.setTitle("Laptop 1");
         productRepository.save(p1);
-        productRepository.save(p2);
-        productRepository.save(p3);
-        productRepository.save(p4);
-        productRepository.save(p5);
-        productRepository.save(p6);
+        System.out.print(p1.toString());
     }
 }

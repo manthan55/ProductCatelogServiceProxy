@@ -12,9 +12,10 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByTitleEquals(String title);
+
+    // https://www.baeldung.com/spring-jpa-like-queries
     List<Product> findAllByTitleLike(String title);
 
 //    List<Product> findByTitleEquals(String title, Pageable pageable);
-
-    Page<Product> findByTitleEquals(String title, PageRequest pageRequest);
+    Page<Product> findByTitleEquals(String title, Pageable pageable);
 }
