@@ -157,16 +157,16 @@ public class ProductController {
         HttpStatus httpStatus = HttpStatus.OK;
 
         try{
-            Product product = productService.getProductById1(userId,productId);
+            ProductUserDTO productUserDTO = productService.getProductById1(userId,productId);
 
-            if(Objects.isNull(product)){
-                response = new APIResponseSuccess<ProductResponseDTO>(null);
+            if(Objects.isNull(productUserDTO)){
+                response = new APIResponseSuccess<ProductUserDTO>(null);
                 // spring will strip the body for 204 status code
                 // change status code to something else to see some content in body (response: null)
                 httpStatus = HttpStatus.NO_CONTENT;
             }
             else{
-                response = new APIResponseSuccess<ProductResponseDTO>(ProductResponseDTO.fromProduct(product));
+                response = new APIResponseSuccess<ProductUserDTO>(productUserDTO);
                 httpStatus = HttpStatus.OK;
             }
 

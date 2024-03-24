@@ -1,5 +1,6 @@
 package com.example.productservice.service;
 
+import com.example.productservice.dto.ProductUserDTO;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.models.Product;
 
@@ -17,5 +18,5 @@ public interface IProductService {
 
     Product deleteProduct(Long productId) throws ProductNotFoundException;
 
-    Product getProductById1(Long userId, Long productId);
+    ProductUserDTO getProductById1(Long userId, Long productId);
 }

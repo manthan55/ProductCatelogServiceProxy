@@ -1,5 +1,6 @@
 package com.example.productservice.service;
 
+import com.example.productservice.dto.ProductUserDTO;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.fakestoreapi.FSClient;
 import com.example.productservice.fakestoreapi.models.FSProduct;
@@ -87,7 +88,7 @@ public class FSProductService implements IProductService {
     }
 
     @Override
-    public Product getProductById1(Long userId, Long productId) {
+    public ProductUserDTO getProductById1(Long userId, Long productId) {
         return null;
     }
 }

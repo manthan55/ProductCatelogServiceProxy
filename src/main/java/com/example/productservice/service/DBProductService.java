@@ -1,5 +1,6 @@
 package com.example.productservice.service;
 
+import com.example.productservice.dto.ProductUserDTO;
 import com.example.productservice.dto.UserDTO;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.models.Product;
@@ -55,13 +56,15 @@ public class DBProductService implements IProductService{
     }
 
     @Override
-    public Product getProductById1(Long userId, Long productId){
+    public ProductUserDTO getProductById1(Long userId, Long productId){
         Optional<Product> optProduct = productRepository.findById(productId);
         if(optProduct.isEmpty()) return null;
 
-        UserDTO userDTO = restTemplate.getForEntity("http://userservice/users/{id}",UserDTO.class,userId).getBody();
+        System.out.println("http://UserService/users/");
+
+        UserDTO userDTO = restTemplate.getForEntity("http://UserService/users/{id}",UserDTO.class,userId).getBody();
         System.out.println(userDTO);
 
-        return optProduct.get();
+        return ProductUserDTO.fromProductUser(optProduct.get(), userDTO);
     }
 }
