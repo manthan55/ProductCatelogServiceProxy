@@ -1,9 +1,11 @@
 package com.example.productservice.service;
 
+import com.example.productservice.dto.UserDTO;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.models.Product;
 import com.example.productservice.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +14,11 @@ import java.util.Optional;
 @Service("DBProductService")
 public class DBProductService implements IProductService{
     private ProductRepository productRepository;
+    private RestTemplate restTemplate;
 
-    public DBProductService(ProductRepository productRepository) {
+    public DBProductService(ProductRepository productRepository, RestTemplate restTemplate) {
         this.productRepository = productRepository;
+        this.restTemplate = restTemplate;
     }
 
     @Override
@@ -48,5 +52,16 @@ public class DBProductService implements IProductService{
 
         productRepository.deleteById(productId);
         return existingProduct;
+    }
+
+    @Override
+    public Product getProductById1(Long userId, Long productId){
+        Optional<Product> optProduct = productRepository.findById(productId);
+        if(optProduct.isEmpty()) return null;
+
+        UserDTO userDTO = restTemplate.getForEntity("http://userservice/users/{id}",UserDTO.class,userId).getBody();
+        System.out.println(userDTO);
+
+        return optProduct.get();
     }
 }

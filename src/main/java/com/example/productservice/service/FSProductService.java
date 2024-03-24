@@ -85,4 +85,9 @@ public class FSProductService implements IProductService {
         FSProduct deletedProduct = fsClient.deleteProduct(productId);
         return Product.fromFSProduct(deletedProduct);
     }
+
+    @Override
+    public Product getProductById1(Long userId, Long productId) {
+        return null;
+    }
 }

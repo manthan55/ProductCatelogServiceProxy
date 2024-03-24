@@ -14,8 +14,8 @@ public class ProductServiceTest {
     @Autowired
     private ProductRepository productRepository;
 
-    @Test
-    @DisplayName("TEMP -- insert dummy data")
+//    @Test
+//    @DisplayName("TEMP -- insert dummy data")
     public void TEMP_InsertDummyData() {
         // Arrange
         Product p1 = new Product();

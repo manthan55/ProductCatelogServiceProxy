@@ -16,4 +16,6 @@ public interface IProductService {
     Product editProduct(Long productId, Product product) throws ProductNotFoundException;
 
     Product deleteProduct(Long productId) throws ProductNotFoundException;
+
+    Product getProductById1(Long userId, Long productId);
 }

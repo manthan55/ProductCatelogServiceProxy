@@ -149,6 +149,35 @@ public class ProductController {
 
         return ResponseEntity.status(httpStatus).body(response);
     }
+
+
+    @GetMapping("/{userId}/{productId}")
+    public HttpEntity<APIResponse> getProductById1(@PathVariable Long userId, @PathVariable Long productId) throws Exception {
+        APIResponse response = null;
+        HttpStatus httpStatus = HttpStatus.OK;
+
+        try{
+            Product product = productService.getProductById1(userId,productId);
+
+            if(Objects.isNull(product)){
+                response = new APIResponseSuccess<ProductResponseDTO>(null);
+                // spring will strip the body for 204 status code
+                // change status code to something else to see some content in body (response: null)
+                httpStatus = HttpStatus.NO_CONTENT;
+            }
+            else{
+                response = new APIResponseSuccess<ProductResponseDTO>(ProductResponseDTO.fromProduct(product));
+                httpStatus = HttpStatus.OK;
+            }
+
+//            return new ResponseEntity<>(ProductResponseDTO.fromProduct(product),headers, HttpStatus.OK);
+        } catch (Exception e){
+            response = new APIResponseFailure(e);
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<>(response, httpStatus);
+    }
 }
 
 /**
