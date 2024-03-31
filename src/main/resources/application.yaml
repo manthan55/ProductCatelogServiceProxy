@@ -27,7 +27,7 @@ spring:
 #    username: "root"
 #    password: "root"
 #    driver-class-name: "com.mysql.cj.jdbc.Driver"
-    url: "jdbc:sqlite:productservice_DB.sqlite"
+    url: "jdbc:sqlite:db/productservice_DB.sqlite"
     username: "sa"
     password: "sa"
     driver-class-name: "org.sqlite.JDBC"

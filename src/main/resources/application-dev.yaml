@@ -6,7 +6,7 @@ spring:
 #    url: "jdbc:mysql://localhost:3306/products?createDatabaseIfNotExist=true"
 #    username: "root"
 #    password: "root"
-    url: "jdbc:sqlite:productservice_dev_DB.sqlite"
+    url: "jdbc:sqlite:db/productservice_dev_DB.sqlite"
     username: "sa"
     password: "sa"
 # Redis

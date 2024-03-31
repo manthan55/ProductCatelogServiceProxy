@@ -1,0 +1,12 @@
+version: "3.4"
+
+services:
+  manthanp_productservice:
+    image: "manthanp/productservice:latest"
+    container_name: "manthanp_productservice"
+    restart: unless-stopped
+    ports:
+    # These ports are in format <host-port>:<container-port>
+      - 80:8085
+    volumes:
+      - ./docker/db:/db

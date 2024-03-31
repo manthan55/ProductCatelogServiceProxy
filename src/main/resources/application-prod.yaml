@@ -6,7 +6,7 @@ spring:
 #    url: "jdbc:mysql://scaler-project-module-db.c8flxv6z8gbz.us-east-1.rds.amazonaws.com/products?createDatabaseIfNotExist=true"
 #    username: "admin"
 #    password: "adminadmin"
-    url: "jdbc:sqlite:productservice_prod_DB.sqlite"
+    url: "jdbc:sqlite:db/productservice_prod_DB.sqlite"
     username: "sa"
     password: "sa"
 # Redis
