@@ -34,3 +34,7 @@ build/
 
 # sqlite
 *.sqlite
+
+
+# env.yaml's
+dev.env.yaml

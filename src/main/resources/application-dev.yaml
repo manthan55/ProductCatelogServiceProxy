@@ -1,4 +1,7 @@
 spring:
+  config:
+    #    https://medium.com/@Marou_arnault/spring-boot-hide-your-credentials-fb1ca22ae911
+    import: file:dev.env.yaml
   datasource:
 #    url: "jdbc:mysql://localhost:3306/products?createDatabaseIfNotExist=true"
 #    username: "root"
@@ -6,3 +9,9 @@ spring:
     url: "jdbc:sqlite:productservice_dev_DB.sqlite"
     username: "sa"
     password: "sa"
+# Redis
+  data:
+    redis:
+      host: ${redis.host}
+      port: ${redis.port}
+      password: ${redis.password}

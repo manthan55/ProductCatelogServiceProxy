@@ -5,24 +5,42 @@ import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.fakestoreapi.FSClient;
 import com.example.productservice.fakestoreapi.models.FSProduct;
 import com.example.productservice.models.Product;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 // https://stackoverflow.com/a/19232501/6818945
 @Service("FSProductService")
-//@Primary
+@Primary
 public class FSProductService implements IProductService {
 
     private FSClient fsClient;
+    private RedisTemplate<String, Object> redisTemplate;
 
-    public FSProductService(FSClient fsClient) {
+    public FSProductService(FSClient fsClient, RedisTemplate<String, Object> redisTemplate) {
         this.fsClient = fsClient;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
     public Product getProductById(Long productId) {
-        FSProduct fsProduct = fsClient.getProduct(productId);
+        FSProduct fsProduct = null;
+
+        // try retrieve from cache
+        fsProduct = (FSProduct) redisTemplate.opsForHash().get("PRODUCTS", productId);
+        if(fsProduct != null){
+            System.out.println("read from cache");
+            return Product.fromFSProduct(fsProduct);
+        }
+
+        // if not available in cache then retrieve from DB
+        System.out.println("read from FakeStore");
+        fsProduct = fsClient.getProduct(productId);
+        // if read from DB then store in cache before returning
+        redisTemplate.opsForHash().put("PRODUCTS", productId, fsProduct);
+
         return Product.fromFSProduct(fsProduct);
     }
 

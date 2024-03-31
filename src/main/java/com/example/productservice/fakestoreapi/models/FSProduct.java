@@ -3,8 +3,10 @@ package com.example.productservice.fakestoreapi.models;
 import com.example.productservice.models.Product;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class FSProduct {
+public class FSProduct implements Serializable {
     String id;
     String title;
     Double price;

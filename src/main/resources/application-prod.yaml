@@ -1,4 +1,7 @@
 spring:
+  config:
+    #    https://medium.com/@Marou_arnault/spring-boot-hide-your-credentials-fb1ca22ae911
+    import: file:prod.env.yaml
   datasource:
 #    url: "jdbc:mysql://scaler-project-module-db.c8flxv6z8gbz.us-east-1.rds.amazonaws.com/products?createDatabaseIfNotExist=true"
 #    username: "admin"
@@ -6,6 +9,12 @@ spring:
     url: "jdbc:sqlite:productservice_prod_DB.sqlite"
     username: "sa"
     password: "sa"
+# Redis
+  data:
+    redis:
+      host: ${redis.host}
+      port: ${redis.port}
+      password: ${redis.password}
 
 
 # Eureka Client

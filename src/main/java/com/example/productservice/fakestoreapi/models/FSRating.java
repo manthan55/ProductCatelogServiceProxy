@@ -1,17 +1,13 @@
 package com.example.productservice.fakestoreapi.models;
 
-import com.example.productservice.models.Rating;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
-public class FSRating {
+public class FSRating implements Serializable {
     private Double rate;
     private Integer count;
-
-    public FSRating(Rating rating) {
-        this.rate = rating.getRate();
-        this.count = rating.getCount();
-    }
 }
