@@ -14,6 +14,9 @@ import java.util.List;
 public class FSClient implements IFakeStoreAdapter{
     private RestTemplate restTemplate;
     private HttpUtils httpUtils;
+//     private String fakestoreapiHost = "https://fakestoreapi.com";
+// using http:// as docker container is facing certificate issue while talking to https:// endpoint
+    private String fakestoreapiHost = "http://fakestoreapi.com";
 
     public FSClient(RestTemplateBuilder restTemplateBuilder, HttpUtils httpUtils) {
         this.restTemplate = restTemplateBuilder.build();
@@ -27,7 +30,7 @@ public class FSClient implements IFakeStoreAdapter{
     @Override
     public FSProduct getProduct(Long id) {
         FSProduct product = restTemplate.getForEntity(
-                "https://fakestoreapi.com/products/{productId}",
+                fakestoreapiHost+"/products/{productId}",
                 FSProduct.class,
                 id
         ).getBody();
@@ -37,7 +40,7 @@ public class FSClient implements IFakeStoreAdapter{
     @Override
     public List<FSProduct> getAllProducts() {
         FSProduct[] products = restTemplate.getForEntity(
-                "https://fakestoreapi.com/products",
+                fakestoreapiHost+"/products",
                 FSProduct[].class
         ).getBody();
         return Arrays.asList(products);
@@ -46,7 +49,7 @@ public class FSClient implements IFakeStoreAdapter{
     @Override
     public FSProduct addProduct(FSProduct product) {
         FSProduct addedProduct = restTemplate.postForEntity(
-                "https://fakestoreapi.com/products",
+                fakestoreapiHost+"/products",
                 product,
                 FSProduct.class
         ).getBody();
@@ -65,7 +68,7 @@ public class FSClient implements IFakeStoreAdapter{
         // https://stackoverflow.com/questions/29447382/resttemplate-patch-request#:~:text=standard%20JDK%20HTTP%20library%20does%20not%20support%20HTTP%20PATCH
         FSProduct updatedProduct = restTemplate
                 .patchForObject(
-                        "https://fakestoreapi.com/products/{productId}",
+                        fakestoreapiHost+"/products/{productId}",
                         product,
                         FSProduct.class,
                         id
@@ -79,7 +82,7 @@ public class FSClient implements IFakeStoreAdapter{
         FSProduct product = httpUtils
                 .makeHttpCall(
                         HttpMethod.DELETE,
-                        "https://fakestoreapi.com/products/{productId}",
+                        fakestoreapiHost+"/products/{productId}",
                         null,
                         FSProduct.class,
                         id
@@ -92,7 +95,7 @@ public class FSClient implements IFakeStoreAdapter{
     @Override
     public List<String> getAllCategories() {
         String[] categories = restTemplate.getForEntity(
-                "https://fakestoreapi.com/products/categories",
+                fakestoreapiHost+"/products/categories",
                 String[].class
         ).getBody();
         return Arrays.asList(categories);
