@@ -24,7 +24,7 @@ public class ProductController {
     private IProductService productService;
 
     // https://stackoverflow.com/a/19232501/6818945
-    public ProductController(@Qualifier("DBProductService") IProductService productService) {
+    public ProductController(IProductService productService) {
         this.productService = productService;
     }
 
